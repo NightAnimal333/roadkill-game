@@ -13,7 +13,7 @@ var ROADKILL_SPAWN_UP : float = 0
 var ROADKILL_SPAWN_DOWN : float = 700
 
 # How far away from the player the roadkill spawns (on x-axis)
-var ROADKILL_SPAWN_DISTANCE_MIN : int = 500
+var ROADKILL_SPAWN_DISTANCE_MIN : int = 800
 var ROADKILL_SPAWN_DISTANCE_RANGE : int = 500
 
 var max_roadkill : int = 5

@@ -21,15 +21,12 @@ extends KinematicBody2D
 signal roadkill_killed
 
 var SPEED_STEP_Y : float = 200
-var SPEED_STEP_X : float = 50
+var SPEED_STEP_X : float = 100
 var BRAKE_STEP : float = 0.99
 
 #The maximum value for Y-axis velocity
 var MAX_SPEED_Y : float = 200
-var MAX_SPEED_X : float = 500
-
-#How fast the car moves on X-axis
-var X_SPEED_MULTIPLIER : float = 0.7
+var MAX_SPEED_X : float = 700
 
 #The bigger this number - the less the car rotates when you change the y velocity
 var ROTATION_X : float = 1000

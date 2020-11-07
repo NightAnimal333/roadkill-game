@@ -110,6 +110,7 @@ shape = SubResource( 18 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "up"
+frame = 1
 speed_scale = 5.0
 playing = true
 
