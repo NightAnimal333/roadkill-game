@@ -10,9 +10,7 @@ func _ready():
 	initialize(Vector2(1000, -400), 1,  100, 3)
 
 func _process(delta):
-	velocity.x = get_node("/root/Road/Player").velocity.x # Change later
-	print (str(get_node("/root/Road/Player").global_position))
-	pass
+	velocity.x = get_node("/root/GameManager/Road/Player").velocity.x # Change later
 	
 
 func _physics_process(delta):
