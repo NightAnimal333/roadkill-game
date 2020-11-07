@@ -39,7 +39,7 @@ scroll_base_scale = Vector2( 0.7, 1 )
 motion_mirroring = Vector2( 1000, 0 )
 
 [node name="Sprite" type="Sprite" parent="Forest/ParallaxLayer"]
-position = Vector2( 501.619, 41.2725 )
+position = Vector2( 493.21, 21.091 )
 scale = Vector2( 1, 0.24 )
 texture = ExtResource( 4 )
 

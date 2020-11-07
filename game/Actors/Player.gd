@@ -19,13 +19,15 @@ extends KinematicBody2D
 #=======
 
 
-var BASE_SPEED : float = 200
+var SPEED_STEP : float = 200
+var BRAKE_STEP : float = 0.99
 
 #The maximum value for Y-axis velocity
-var MAX_SPEED : float = 200
+var MAX_SPEED_Y : float = 200
+var MAX_SPEED_X : float = 500
 
 #How fast the car moves on X-axis
-var X_SPEED_MULTIPLIER : float = 0.5
+var X_SPEED_MULTIPLIER : float = 0.7
 
 #The bigger this number - the less the car rotates when you change the y velocity
 var ROTATION_X : float = 1000
@@ -33,24 +35,36 @@ var ROTATION_X : float = 1000
 var velocity : Vector2 
 
 func _ready():
-	velocity.x = self.global_position.x
+	velocity.x = 100
 	velocity.y = 0
 
 func _process(delta):
-
-	if Input.is_action_pressed("move_up"):
-		if velocity.y > -MAX_SPEED:
-			velocity.y -= BASE_SPEED * delta
-	#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle())		
+	
+	
+	if Input.is_action_pressed("move_brake"):
+		if velocity.x > 10:
+			velocity *= BRAKE_STEP
+		else:
+			 velocity.x = 0 
 			
-	if Input.is_action_pressed("move_down"):
-		if velocity.y < MAX_SPEED:
-			velocity.y += BASE_SPEED * delta
-	#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle() * -1)
-			
+	else:
+		if velocity.x < MAX_SPEED_X:
+			velocity.x += SPEED_STEP * delta
+		
+		if Input.is_action_pressed("move_up"):
+			if velocity.y > -MAX_SPEED_Y:
+				velocity.y -= SPEED_STEP * delta
+		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle())		
+				
+		if Input.is_action_pressed("move_down"):
+			if velocity.y < MAX_SPEED_Y:
+				velocity.y += SPEED_STEP * delta
+		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle() * -1)
+	
 			
 func _physics_process(_delta):
-	move_and_slide(Vector2(velocity.x * X_SPEED_MULTIPLIER, velocity.y), Vector2(0, -1))
-	self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
+	move_and_slide(Vector2(velocity.x, velocity.y), Vector2(0, -1))
+	if !Input.is_action_pressed("move_brake"):
+		self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
 	
 

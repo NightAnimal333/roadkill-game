@@ -34,7 +34,18 @@ margin_top = 456.0
 margin_right = -152.0
 margin_bottom = -32.0
 custom_fonts/normal_font = SubResource( 2 )
-text = "I really like nuts"
+bbcode_enabled = true
+text = "I really like nuts. There is something fresh about them"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CharacterTimer" type="Timer" parent="RichTextLabel"]
+wait_time = 0.1
+autostart = true
+
+[node name="DisappearTimer" type="Timer" parent="RichTextLabel"]
+wait_time = 3.0
+one_shot = true
+[connection signal="timeout" from="RichTextLabel/CharacterTimer" to="." method="_on_CharacterTimer_timeout"]
+[connection signal="timeout" from="RichTextLabel/DisappearTimer" to="." method="_on_DisappearTimer_timeout"]
