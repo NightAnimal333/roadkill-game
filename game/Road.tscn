@@ -2,13 +2,14 @@
 
 [ext_resource path="res://res/road.jpg" type="Texture" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://res/pixel-art-forest-vector-12492952.jpg" type="Texture" id=4]
+[ext_resource path="res://res/grass.png" type="Texture" id=3]
 [ext_resource path="res://Road.gd" type="Script" id=6]
 
 [node name="Road" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 491.639, 525 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 377.047, -12.4814 )
@@ -27,7 +28,7 @@ scroll_ignore_camera_zoom = true
 motion_mirroring = Vector2( 1024, 0 )
 
 [node name="Sprite" type="Sprite" parent="Road/ParallaxLayer"]
-position = Vector2( 513.268, 305.164 )
+position = Vector2( 513.268, 390.896 )
 rotation = 1.5708
 scale = Vector2( 0.404715, 1 )
 texture = ExtResource( 1 )
@@ -39,17 +40,19 @@ scroll_base_scale = Vector2( 0.7, 1 )
 motion_mirroring = Vector2( 1000, 0 )
 
 [node name="Sprite" type="Sprite" parent="Forest/ParallaxLayer"]
-position = Vector2( 501.619, 41.2725 )
-scale = Vector2( 1, 0.24 )
-texture = ExtResource( 4 )
+position = Vector2( 666, 107 )
+rotation = 1.5708
+scale = Vector2( 0.24, 1 )
+texture = ExtResource( 3 )
 
 [node name="Forest2" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2( 0.7, 1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Forest2"]
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 1024, 0 )
 
 [node name="Sprite" type="Sprite" parent="Forest2/ParallaxLayer"]
-position = Vector2( 509.17, 537.75 )
-scale = Vector2( 1, 0.24 )
-texture = ExtResource( 4 )
+position = Vector2( 666, 700 )
+rotation = 1.5708
+scale = Vector2( 0.24, 1 )
+texture = ExtResource( 3 )

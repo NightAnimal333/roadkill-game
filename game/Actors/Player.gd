@@ -18,8 +18,10 @@ extends KinematicBody2D
 #		body.queue_free()
 #=======
 
+signal roadkill_killed
 
-var SPEED_STEP : float = 200
+var SPEED_STEP_Y : float = 200
+var SPEED_STEP_X : float = 50
 var BRAKE_STEP : float = 0.99
 
 #The maximum value for Y-axis velocity
@@ -42,23 +44,24 @@ func _process(delta):
 	
 	
 	if Input.is_action_pressed("move_brake"):
-		if velocity.x > 10:
+		if velocity.x > 50:
 			velocity *= BRAKE_STEP
 		else:
-			 velocity.x = 0 
+			velocity.x = 0 
+			velocity.y = 0
 			
 	else:
 		if velocity.x < MAX_SPEED_X:
-			velocity.x += SPEED_STEP * delta
+			velocity.x += SPEED_STEP_X * delta
 		
 		if Input.is_action_pressed("move_up"):
 			if velocity.y > -MAX_SPEED_Y:
-				velocity.y -= SPEED_STEP * delta
+				velocity.y -= SPEED_STEP_Y * delta
 		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle())		
 				
 		if Input.is_action_pressed("move_down"):
 			if velocity.y < MAX_SPEED_Y:
-				velocity.y += SPEED_STEP * delta
+				velocity.y += SPEED_STEP_Y * delta
 		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle() * -1)
 	
 			
@@ -68,3 +71,9 @@ func _physics_process(_delta):
 		self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
 	
 
+
+
+func _on_Hitbox_body_shape_entered(body_id, body, body_shape, area_shape):
+	print("You monster!")
+	emit_signal("roadkill_killed")
+	self.queue_free()

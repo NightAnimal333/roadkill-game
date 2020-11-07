@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://res/bunny.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Roadkill.gd" type="Script" id=2]
 [ext_resource path="res://res/spritesheet_bunny_up.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 10.324
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -101,12 +104,13 @@ animations = [ {
 position = Vector2( 253.212, 196.001 )
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Roadkill" type="CollisionShape2D" parent="."]
+shape = SubResource( 18 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "up"
-frame = 1
+speed_scale = 5.0
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
