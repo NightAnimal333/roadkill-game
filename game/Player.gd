@@ -25,7 +25,7 @@ var BASE_SPEED : float = 200
 var MAX_SPEED : float = 200
 
 #The bigger this number - the more the car rotates when you change the y velocity
-var ROTATION_X : float = 500
+var ROTATION_X : float = 1000
 
 var velocity : Vector2 
 
