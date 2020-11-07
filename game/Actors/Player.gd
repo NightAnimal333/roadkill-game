@@ -43,7 +43,7 @@ func _process(delta):
 	print (velocity.x)
 	
 	if Input.is_action_pressed("move_brake"):
-		if velocity.x > 0:
+		if velocity.x > 10:
 			velocity *= BRAKE_STEP
 		else:
 			 velocity.x = 0 
@@ -65,6 +65,7 @@ func _process(delta):
 			
 func _physics_process(_delta):
 	move_and_slide(Vector2(velocity.x, velocity.y), Vector2(0, -1))
-	self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
+	if !Input.is_action_pressed("move_brake"):
+		self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
 	
 
