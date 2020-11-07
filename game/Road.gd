@@ -22,7 +22,7 @@ func _process(delta):
 
 	var generate_roadkill = randi() % 100
 	if (generate_roadkill > 98) && (roadkill.size() < max_roadkill):
-		roadkill.append(load("res://Roadkill.tscn").instance())
+		roadkill.append(load("res://Actors/Roadkill.tscn").instance())
 		self.add_child(roadkill[roadkill.size() - 1])
 		
 		roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + 300, 0), 500, 7)

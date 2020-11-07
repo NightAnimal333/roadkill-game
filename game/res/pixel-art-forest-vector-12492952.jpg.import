@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixel-art-forest-vector-12492952.jpg-7276ba77eddb22c2f101f72f0f973299.stex"
+path="res://.import/pixel-art-forest-vector-12492952.jpg-4f98a2804e013a446ab7a53063f2c8f0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixel-art-forest-vector-12492952.jpg"
-dest_files=[ "res://.import/pixel-art-forest-vector-12492952.jpg-7276ba77eddb22c2f101f72f0f973299.stex" ]
+source_file="res://res/pixel-art-forest-vector-12492952.jpg"
+dest_files=[ "res://.import/pixel-art-forest-vector-12492952.jpg-4f98a2804e013a446ab7a53063f2c8f0.stex" ]
 
 [params]
 
