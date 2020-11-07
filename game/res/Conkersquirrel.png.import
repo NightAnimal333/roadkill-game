@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Conkersquirrel.jpg-8ca1500f5b34bb2c4a2225603559ba3a.stex"
+path="res://.import/Conkersquirrel.png-1ab3580565f866f037ebe856740a98b3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Conkersquirrel.jpg"
-dest_files=[ "res://.import/Conkersquirrel.jpg-8ca1500f5b34bb2c4a2225603559ba3a.stex" ]
+source_file="res://res/Conkersquirrel.png"
+dest_files=[ "res://.import/Conkersquirrel.png-1ab3580565f866f037ebe856740a98b3.stex" ]
 
 [params]
 

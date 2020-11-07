@@ -27,12 +27,10 @@ func _physics_process(delta):
 
 func initialize(spawn_position : Vector2, new_x : float,
 		new_y : float, spawn_time : int):
-	player = get_node("/root/Road/Player")
+	player = get_node("/root/GameManager/Road/Player")
 	timer.start(spawn_time)
 	position = spawn_position + player.global_position
 	y_speed = new_y
 
 func _on_Timer_timeout():
 	velocity.y = y_speed
-	print ("My time to shine")
-	print (velocity)
