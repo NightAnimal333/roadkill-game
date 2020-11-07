@@ -21,14 +21,16 @@ extends KinematicBody2D
 
 var BASE_SPEED : float = 200
 
-#The maximum value for velocity
+#The maximum value for Y-axis velocity
 var MAX_SPEED : float = 200
 
-#The bigger this number - the more the car rotates when you change the y velocity
+#How fast the car moves on X-axis
+var X_SPEED_MULTIPLIER : float = 0.5
+
+#The bigger this number - the less the car rotates when you change the y velocity
 var ROTATION_X : float = 1000
 
 var velocity : Vector2 
-
 
 func _ready():
 	velocity.x = self.global_position.x
@@ -48,7 +50,7 @@ func _process(delta):
 			
 			
 func _physics_process(_delta):
-	move_and_slide(Vector2(velocity.x, velocity.y), Vector2(0, -1))
+	move_and_slide(Vector2(velocity.x * X_SPEED_MULTIPLIER, velocity.y), Vector2(0, -1))
 	self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
 	
 
