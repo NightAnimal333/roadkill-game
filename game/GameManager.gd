@@ -10,6 +10,10 @@ enum States {
 }
 
 var game_state = States.RoadLevel
+var current_level
+var savegame = null
+var player
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
