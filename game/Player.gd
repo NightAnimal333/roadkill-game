@@ -48,8 +48,7 @@ func _process(delta):
 			
 			
 func _physics_process(_delta):
-	move_and_slide(Vector2(200, velocity.y), Vector2(0, -1))
+	move_and_slide(Vector2(velocity.x, velocity.y), Vector2(0, -1))
 	self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
-	print(velocity)
 	
 
