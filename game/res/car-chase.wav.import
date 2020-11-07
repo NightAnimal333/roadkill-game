@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/car-chase.wav-3c1652ff1c27aad999fbe5556e99d904.sample"
+
+[deps]
+
+source_file="res://res/car-chase.wav"
+dest_files=[ "res://.import/car-chase.wav-3c1652ff1c27aad999fbe5556e99d904.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

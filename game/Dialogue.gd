@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-onready var label = $RichTextLabel
+onready var label = $TextureRect/RichTextLabel
 onready var textbox = $TextureRect
-onready var chara_timer = $RichTextLabel/CharacterTimer
-onready var disa_timer = $RichTextLabel/DisappearTimer
+onready var chara_timer = $TextureRect/RichTextLabel/CharacterTimer
+onready var disa_timer = $TextureRect/RichTextLabel/DisappearTimer
 var json 
 
 var more_sentences
