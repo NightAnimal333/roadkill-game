@@ -19,10 +19,6 @@ config/name="Roadkill Game"
 run/main_scene="res://GameManager.tscn"
 config/icon="res://icon.png"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/width=1366

@@ -29,6 +29,5 @@ func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int):
 	return self
 
 func _on_Timer_timeout():
-	print ("My time to shine")
 	emit_signal("time_to_die", self)
 	self.queue_free()	

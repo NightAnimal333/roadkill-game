@@ -40,8 +40,7 @@ func _process(delta):
 		
 		#How far away the roadkil will spawn on x-axis
 		var distance = ROADKILL_SPAWN_DISTANCE_MIN + (randi() % ROADKILL_SPAWN_DISTANCE_RANGE)
-		
-		print(distance)
+	
 		
 		#Downwards
 		if direction == 1:

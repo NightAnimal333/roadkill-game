@@ -15,6 +15,8 @@ var ROTATION_X : float = 1000
 
 var velocity : Vector2 
 
+var in_mud : bool = 0
+
 func _ready():
 	velocity.x = 100
 	velocity.y = 0
@@ -30,8 +32,15 @@ func _process(delta):
 			velocity.y = 0
 			
 	else:
-		if velocity.x < MAX_SPEED_X:
-			velocity.x += SPEED_STEP_X * delta
+		if !in_mud:
+			if velocity.x < MAX_SPEED_X:
+				velocity.x += SPEED_STEP_X * delta
+		else:
+			if self.velocity.x > MAX_SPEED_X && velocity.x > 0:
+				self.velocity.x *= BRAKE_STEP
+		
+			if self.velocity.x > MAX_SPEED_Y && velocity.y > 0:
+				self.velocity.x -= SPEED_STEP_Y * delta
 		
 		if Input.is_action_pressed("move_up"):
 			if velocity.y > -MAX_SPEED_Y:
@@ -42,6 +51,10 @@ func _process(delta):
 			if velocity.y < MAX_SPEED_Y:
 				velocity.y += SPEED_STEP_Y * delta
 		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle() * -1)
+		
+	
+	print (velocity)
+	print (MAX_SPEED_X)
 	
 			
 func _physics_process(_delta):
@@ -50,17 +63,32 @@ func _physics_process(_delta):
 		self.look_at(Vector2(self.position.x + ROTATION_X, self.position.y + velocity.y))
 	
 
-
+func slow_down():
+	self.MAX_SPEED_X = 100
+	self.MAX_SPEED_Y = 10
+	
+	self.in_mud = true
+	
+func speed_up():
+	self.MAX_SPEED_X = 700
+	self.MAX_SPEED_Y = 200
+	
+	self.in_mud = false
+	
 
 func _on_Hitbox_body_shape_entered(body_id, body, body_shape, area_shape):
-	print("You monster!")
 	emit_signal("roadkill_killed")
 	self.queue_free()
 
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("SlowZone"):
-		print ("Slow down bucko")
+		self.slow_down()
 	elif area.is_in_group("Trees"):
 		emit_signal("roadkill_killed")
 		self.queue_free()
+
+
+func _on_Hitbox_area_exited(area):
+	if area.is_in_group("SlowZone"):
+		self.speed_up()
