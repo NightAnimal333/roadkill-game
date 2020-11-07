@@ -6,6 +6,7 @@ var y_speed : float = 100
 var ID : int
 
 onready var timer = $Timer
+onready var sprite = $Sprite
 signal time_to_die(object)
 
 """
@@ -38,6 +39,11 @@ func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int, 
 	self.position = spawn_position
 	y_speed = new_y_speed
 	self.ID = new_ID
+	
+	if y_speed >=0:
+		sprite.animation = "down"
+	else:
+		sprite.animation = "up"
 	
 	return self
 

@@ -40,7 +40,6 @@ func _ready():
 
 func _process(delta):
 	
-	print (velocity.x)
 	
 	if Input.is_action_pressed("move_brake"):
 		if velocity.x > 10:
