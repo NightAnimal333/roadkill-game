@@ -10,6 +10,11 @@ var roadkill = []
 
 onready var player = $Player
 
+
+func remove_roadkill(roadkill_obj):
+	roadkill.erase(roadkill_obj)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,7 +30,7 @@ func _process(delta):
 		roadkill.append(load("res://Actors/Roadkill.tscn").instance())
 		self.add_child(roadkill[roadkill.size() - 1])
 		
-		roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + 300, 0), 500, 7)
-		#self.connect("time_to_die", roadkill[roadkill.size() - 1], pop_ro)
+		roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + 300, 0), 500, 7, roadkill.size() - 1)
+		roadkill[roadkill.size() - 1].connect("time_to_die", self, "remove_roadkill")
 		
-
+		

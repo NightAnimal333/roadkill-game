@@ -3,9 +3,10 @@ extends KinematicBody2D
 #var velocity : Vector2
 var y_speed : float = 100
 #var player 
+var ID : int
 
 onready var timer = $Timer
-signal time_to_die
+signal time_to_die(object)
 
 """
 Spawn squirrel by using initialize with args:
@@ -32,16 +33,17 @@ func _process(delta):
 func _physics_process(delta):
 	move_and_slide(Vector2(0, y_speed))
 
-func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int):
+func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int, new_ID : int):
 	timer.start(life_time)
 	self.position = spawn_position
 	y_speed = new_y_speed
+	self.ID = new_ID
 	
 	return self
 
 func _on_Timer_timeout():
 	#velocity.y = y_speed
 	print ("My time to shine")
-	self.queue_free()
-	emit_signal("time_to_die")
+	emit_signal("time_to_die", self)
+	self.queue_free()	
 	#print (velocity)

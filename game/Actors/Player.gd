@@ -25,7 +25,7 @@ var BASE_SPEED : float = 200
 var MAX_SPEED : float = 200
 
 #How fast the car moves on X-axis
-var X_SPEED_MULTIPLIER : float = 0.5
+var X_SPEED_MULTIPLIER : float = 0.7
 
 #The bigger this number - the less the car rotates when you change the y velocity
 var ROTATION_X : float = 1000
