@@ -1,10 +1,5 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 signal level_over
 
 # Y-coordinate where the roadkill spawns
@@ -20,20 +15,19 @@ var max_roadkill : int = 5
 var roadkill = []
 
 onready var player = $Player
-
+onready var road_zones = $RoadZones
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	player.connect("roadkill_killed", self, "emit_level_over")
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	road_zones.position.x = player.position.x - 500
+
 	randomize()
 
 	var generate_roadkill = randi() % 100
@@ -58,7 +52,10 @@ func _process(delta):
 			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + ROADKILL_SPAWN_DISTANCE_MIN, ROADKILL_SPAWN_DOWN), 500 * direction, 7)
 				
 		roadkill[roadkill.size() - 1].connect("time_to_die", self, "remove_roadkill")
-		
+	
+	
+
+
 func emit_level_over():
 	print("You dead!")
 	emit_signal("level_over")

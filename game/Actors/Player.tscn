@@ -31,4 +31,5 @@ frames = SubResource( 1 )
 position = Vector2( 60.1319, 0 )
 rotation = 1.5708
 shape = SubResource( 2 )
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_shape_entered" from="Hitbox" to="." method="_on_Hitbox_body_shape_entered"]

@@ -1,23 +1,5 @@
 extends KinematicBody2D
 
-#<<<<<<< HEAD
-#var speed = 200
-#var velocity = Vector2()
-#
-#func _physics_process(delta):
-#	if Input.is_action_pressed("ui_right"):
-#		velocity.x = speed
-#	else:
-#		velocity.x = 0
-#
-#	velocity = move_and_slide(velocity)
-#
-#
-#func _on_Area2D_body_entered(body):
-#	if body.is_in_group("Animal"):
-#		body.queue_free()
-#=======
-
 signal roadkill_killed
 
 var SPEED_STEP_Y : float = 200
@@ -74,3 +56,11 @@ func _on_Hitbox_body_shape_entered(body_id, body, body_shape, area_shape):
 	print("You monster!")
 	emit_signal("roadkill_killed")
 	self.queue_free()
+
+
+func _on_Hitbox_area_entered(area):
+	if area.is_in_group("SlowZone"):
+		print ("Slow down bucko")
+	elif area.is_in_group("Trees"):
+		emit_signal("roadkill_killed")
+		self.queue_free()
