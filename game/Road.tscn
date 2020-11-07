@@ -2,7 +2,7 @@
 
 [ext_resource path="res://road.jpg" type="Texture" id=1]
 
-[node name="Manager" type="Node2D"]
+[node name="Road" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
 
@@ -17,10 +17,10 @@ motion_offset = Vector2( 5, 6 )
 motion_mirroring = Vector2( 7, 8 )
 
 [node name="TextureRect" type="TextureRect" parent="Road/ParallaxLayer"]
-margin_left = 843.486
-margin_top = -340.059
-margin_right = 1867.49
-margin_bottom = 683.941
+margin_left = 1038.79
+margin_top = -268.221
+margin_right = 2062.8
+margin_bottom = 755.779
 rect_rotation = 90.8581
 texture = ExtResource( 1 )
 __meta__ = {
