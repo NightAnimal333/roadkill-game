@@ -22,6 +22,7 @@ var ROADKILL_SPAWN_DISTANCE_RANGE : int = 500
 
 # How far away from the player the roadkill spawns (on x-axis)
 var BYPASSER_SPAWN_DISTANCE : int = 800
+var SAME_LANE_SPAWN_CHANCE : int = 0.9
 
 var max_roadkill : int = 5
 var roadkill = []
@@ -82,8 +83,6 @@ func _process(delta):
 	if is_player_in_opposite:
 		player_statistics["Time in opposite lane"] += delta
 		
-	print (player_statistics)
-	
 	warn_holder.global_position.x = player.global_position.x
 	
 
@@ -93,20 +92,20 @@ func _process(delta):
 #"Maximum speed"
 
 func dialog_manager():
-	
-	if dialog.still_reading == false:
-		if player.calculated_speed >= 80 and player_statistics["Time traveled"] > 5 and dialog_array[4] == true:
-			dialog.reading_sentence(4)
-			dialog_array[4] = false
-		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[24] == true:
-			dialog.reading_sentence(24)
-			dialog_array[24] = false
-		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15] == true:
-			dialog.reading_sentence(15)
-			dialog_array[15] = false
-		if player_statistics["Time braking"] >= 5 and dialog_array[8] == true:
-			dialog.reading_sentence(8)
-			dialog_array[8] = false
+	pass
+#	if dialog.still_reading == false:
+#		if player.calculated_speed >= 80 and player_statistics["Time traveled"] > 5 and dialog_array[4] == true:
+#			dialog.reading_sentence(4)
+#			dialog_array[4] = false
+#		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[24] == true:
+#			dialog.reading_sentence(24)
+#			dialog_array[24] = false
+#		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15] == true:
+#			dialog.reading_sentence(15)
+#			dialog_array[15] = false
+#		if player_statistics["Time braking"] >= 5 and dialog_array[8] == true:
+#			dialog.reading_sentence(8)
+#			dialog_array[8] = false
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)
@@ -120,21 +119,13 @@ func generate_bypasser():
 		bypassers.append(load("res://Actors/Bypasser.tscn").instance())
 		self.add_child(bypassers[bypassers.size() - 1])
 		
-		var temp_random = randi() % 1000
+		var temp_random = randi() % 100000
 		
 		var lane : int
 		
+		print ("CHANCE: " + str(temp_random * (1 - SAME_LANE_SPAWN_CHANCE)))
 		# 99,8% chance to get a car in opposite lane
-		if temp_random > 998:
-			lane = temp_random % 2
-			match lane:
-				0:
-					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_out_lane.position.y)
-				1:
-					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_inn_lane.position.y)
-		
-		# 0,2% chance to get car in same lane
-		else:
+		if temp_random > 90000:
 			lane = temp_random % 2
 			match lane:
 				0:
@@ -143,6 +134,15 @@ func generate_bypasser():
 					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, sam_out_lane.position.y)
 			bypassers[bypassers.size() - 1].x_speed *= -1
 			bypassers[bypassers.size() - 1].rotate(3.141593)
+
+		# 0,2% chance to get car in same lane
+		else:
+			lane = temp_random % 2
+			match lane:
+				0:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_out_lane.position.y)
+				1:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_inn_lane.position.y)
 	
 
 
