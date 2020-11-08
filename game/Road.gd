@@ -37,7 +37,7 @@ onready var dialog = $Dialogue
 
 func _ready():
 	player.connect("player_lost", self, "emit_level_over")
-	for i in range(23):
+	for i in range(25):
 		dialog_array.append(true)
 
 
@@ -50,7 +50,7 @@ func _process(delta):
 #
 #	print(player.traveled)	
 	print(player.calculated_speed)	
-#	print(time_spent_in_opposite)
+	print(time_spent_in_opposite)
 	
 	if (player.traveled > DISTANCE_TO_WIN):
 		emit_signal("level_over", "victory_distance", player.traveled)
@@ -65,7 +65,9 @@ func dialog_manager():
 	if player.calculated_speed >= 80 and dialog_array[4] == true:
 		dialog.reading_sentence(4)
 		dialog_array[4] = false
-
+	if time_spent_in_opposite >= 2 and dialog_array[24] == true:
+		dialog.reading_sentence(24)
+		dialog_array[24] = false
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)
