@@ -1,0 +1,48 @@
+[
+	{
+	"id": "0",
+	"sentence": "Do you find me annoying? ",
+	"next": "-1"
+}, 	{
+	"id": "1",
+	"sentence": "Do you find me annoying? ",
+	"next": "-1"
+}, {
+	"id": "2",
+	"sentence": "Remember that one time when we were watching movies? What was your favorite character? Mine was Nakky the detective!",
+	"next": "-1"
+}, {
+	"id": "3",
+	"sentence": "Hey honey! Put on some rock music for me! You like the the current track? Are you sure we can't change...?",
+	"next": "-1"
+}, {
+	"id": "4",
+	"sentence": "[fade start=4 length=22]Hey honey, I am the batman![/fade]     ...nevermind...",
+	"next": "-1"
+}, {
+	"id": "5",
+	"sentence": "Quaggas are animals of marvel They are so beautiful and majestatic!",
+	"next": "6"
+}, {
+	"id": "6",
+	"sentence": "...wait, what do you mean they are [color=red]extinct[/color]?! Impossible, I just saw one recently!",
+	"next": "-1"
+}, {
+	"id": "7",
+	"sentence": "Apparently the God really wanted to make custom text functions, [color=red]but he failed miserably[/color].",
+	"next": "-1"
+}, {
+	"id": "8",
+	"sentence": "Do you find me annoying? ",
+	"next": "-1"
+}, {
+	"id": "9",
+	"sentence": "If you think you are smart, what's '2 + 2'?",
+	"next": "10"
+}, {
+	"id": "10",
+	"sentence": "Can't answer? Duuh, obviously. It's too hard for you.",
+	"next": "-1"
+}
+
+]

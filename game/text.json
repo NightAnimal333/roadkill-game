@@ -10,25 +10,25 @@
 	"id": "2",
 	"sentence": "When will I have kids? Probably never, why do you ask?",
 	"next": "-1"
-}, {
+},  {
 	"id": "3",
-	"sentence": "Remember that one time when we were watching movies? What was your favorite character? Mine was Nakky the detective!",
-	"next": "-1"
+	"sentence": "Why are you driving so fast, do you really hurry to do something... [color=red]bloody[/color]?",
+	"next": "4"
 }, {
 	"id": "4",
-	"sentence": "Why are you driving so fast, do you really hurry to do something... [color=red]bloody[/color]?",
-	"next": "5"
-}, {
-	"id": "5",
 	"sentence": "No? Just my imagination? I see...",
 	"next": "-1"
 }, {
-	"id": "6",
+	"id": "5",
 	"sentence": "Sometimes I wonder if there is any reason behind us driving. Why do we move forward?",
 	"next": "-1"
 }, {
+	"id": "6",
+	"sentence": "Driving slow like a turtle? Are we really going to reach your house at this speed?",
+	"next": "7"
+}, {
 	"id": "7",
-	"sentence": "Hey honey! Put on some rock music for me! You like the the current track? Are you sure we can't change...?",
+	"sentence": "I think you are just to paranoid right now. Relax and let the car go.",
 	"next": "-1"
 }, {
 	"id": "8",
@@ -36,78 +36,42 @@
 	"next": "9"
 }, {
 	"id": "9",
-	"sentence": "I think you are just to paranoid right now. Relax and let the car go.",
-	"next": "-1"
+	"sentence": "Are you sure we are going in the right direction? It seems like we are just moving forward...",
+	"next": "10"
 }, {
 	"id": "10",
-	"sentence": "Wooooo man! Don't brake so rapidly, I almost spilled my coffee!",
+	"sentence": "Seems like the road just goes on endlessly.",
 	"next": "-1"
 }, {
 	"id": "11",
-	"sentence": "[fade start=4 length=22]Hey honey, I am the batman![/fade]     ...nevermind...",
-	"next": "-1"
+	"sentence": "I will give you a quest, drive over one of the animals and you will get a prize.",
+	"next": "12"
 }, {
 	"id": "12",
-	"sentence": "Quaggas are animals of marvel They are so beautiful and majestatic!",
-	"next": "13"
-}, {
-	"id": "13",
-	"sentence": "...wait, what do you mean they are [color=red]extinct[/color]?! Impossible, I just saw one recently!",
-	"next": "-1"
-}, {
-	"id": "14",
-	"sentence": "Apparently the God really wanted to make custom text functions, [color=red]but he failed miserably[/color].",
-	"next": "-1"
-}, {
-	"id": "15",
-	"sentence": "Are you sure we are going in the right direction? It seems like we are just moving forward...",
-	"next": "16"
-} , {
-	"id": "16",
-	"sentence": "Seems like the road just goes on endlessly.",
-	"next": "-1"
-} , {
-	"id": "17",
-	"sentence": "I will give you a quest, drive over one of the animals and you will get a prize.",
-	"next": "18"
-} , {
-	"id": "18",
 	"sentence": "The prize may be nothing more than my gratitude, but it also matters, right?",
 	"next": "-1"
 } , {
-	"id": "19",
-	"sentence": "Do you find me annoying? But we have been friends for like... when did we get into the car again...?",
-	"next": "-1"
-} , {
-	"id": "20",
-	"sentence": "If you think you are smart, what's '2 + 2'?",
-	"next": "21"
-} , {
-	"id": "21",
-	"sentence": "Can't answer? Duuh, obviously. It's too hard for you.",
-	"next": "-1"
-} , {
-	"id": "22",
+	"id": "13",
 	"sentence": "Why are you doing this to me. This is almost like torture.",
-	"next": "23"
+	"next": "14"
 } , {
-	"id": "23",
+	"id": "14",
 	"sentence": "They are just running in front of you... just [color=red]run over[/color] one, please.",
 	"next": "-1"
 } , {
-	"id": "24",
+	"id": "15",
 	"sentence": "Are you mad?! Are you trying to kill us?!",
 	"next": "-1"
 } , {
-	"id": "25",
+	"id": "16",
 	"sentence": "Are",
 	"next": "-1"
 } , {
-	"id": "26",
+	"id": "17",
 	"sentence": "Are",
 	"next": "-1"
 } , {
-	"id": "27",
+	"id": "18",
 	"sentence": "Are",
 	"next": "-1"
 } , {
