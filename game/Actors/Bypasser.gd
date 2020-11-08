@@ -1,11 +1,7 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-var x_speed : float = 350
+var x_speed : float = 250
 
 # -1 for opposite lanes, 1 for same direction lanes
 var direction = -1

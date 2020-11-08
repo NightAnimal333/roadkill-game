@@ -37,14 +37,12 @@ func _process(delta):
 	self.generate_bypasser()
 
 
-	
-	
 func generate_bypasser():
 	randomize()
 	
 	var generate_bypasser = randi() % 500
 	print(generate_bypasser)
-	if (generate_bypasser > 498):
+	if (generate_bypasser > 495):
 		bypassers.append(load("res://Actors/Bypasser.tscn").instance())
 		self.add_child(bypassers[bypassers.size() - 1])
 		
