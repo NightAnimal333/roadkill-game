@@ -2,6 +2,11 @@ extends Node2D
 
 signal level_over(cause, stats)
 
+enum Sentences {
+	RANDOM,
+	REAL,
+}
+
 onready var warning_sign = preload("res://Warning.tscn")
 
 var DISTANCE_TO_WIN : float = 10000
@@ -46,15 +51,16 @@ func _ready():
 
 func _process(delta):
 	dialog_manager()
-	print (player_statistics["Maximum speed"])
-	print (player_statistics["Time in opposite lane"])
+#	print (player_statistics["Maximum speed"])
+#	print (player_statistics["Time in opposite lane"])
+	print (player_statistics["Distance traveled"])
 	
 	road_zones.position.x = player.position.x - 500
 	
 	self.generate_roadkill()
 	self.generate_bypasser()
 	
-	player_statistics["Distance traveled"] += player.traveled
+	player_statistics["Distance traveled"] = player.traveled
 	player_statistics["Time traveled"] += delta
 	if player.calculated_speed > player_statistics["Maximum speed"]:
 		player_statistics["Maximum speed"] = player.calculated_speed
@@ -82,8 +88,15 @@ func dialog_manager():
 			dialog_array[24] = false
 		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15]:
 			dialog.reading_sentence(15)
-			dialog_array[15]
-#		if player_statistics[""]
+			dialog_array[15] = false
+		if player_statistics["Time traveled"] >= 20 and dialog_array[12]:
+			dialog.reading_sentence(12)
+			dialog_array[12] = false
+		if player_statistics["Time traveled"] >= 65 and dialog_array[14]:
+			dialog.reading_sentence(14)
+			dialog_array[14] = false
+		if player:
+			dialog.reading_sentence(1, Sentences.RANDOM)
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)

@@ -4,10 +4,18 @@ onready var label = $RichTextLabel
 onready var textbox = $TextureRect
 onready var chara_timer = $RichTextLabel/CharacterTimer
 onready var disa_timer = $RichTextLabel/DisappearTimer
-var json 
+
+var json_real 
+var json_random
 
 var more_sentences
+var type_sentence
 var still_reading = false
+
+enum Sentences {
+	RANDOM,
+	REAL,
+}
 
 # 1) Set text to the correct text with set text
 # 2) Reveal text with characterTimer on timeout
@@ -20,22 +28,33 @@ func _ready():
 	read_from_file()
 	label.visible_characters = 0
 	chara_timer.stop()
+	print (json_random)
 
 func _process(_delta):
 	checker()
 
 
-func reading_sentence(sentence_number):
+func reading_sentence(sentence_number, json_type):
 	chara_timer.start()
 	still_reading = true
 	textbox.visible = true
 	label.visible = true
+	type_sentence = json_type
 	
-	label.bbcode_text = json[sentence_number].sentence
-	if json[sentence_number].next != "-1":
-		more_sentences = int(json[sentence_number].next)
-	else: 
-		more_sentences = 0
+	
+	if json_type == Sentences.REAL:
+		label.bbcode_text = json_real[sentence_number].sentence
+		if json_real[sentence_number].next != "-1":
+			more_sentences = int(json_real[sentence_number].next)
+		else: 
+			more_sentences = 0
+	elif json_type == Sentences.RANDOM: 
+		label.bbcode_text = json_random[sentence_number].sentence
+		if json_random[sentence_number].next != "-1":
+			more_sentences = int(json_random[sentence_number].next)
+		else: 
+			more_sentences = 0
+
 
 func checker():
 	if label.visible_characters == len(label.text):
@@ -48,9 +67,12 @@ func read_from_file():
 	var file = File.new()
 	file.open("res://text.json", File.READ)
 	var content = file.get_as_text()
+	json_real = parse_json(content)
 	file.close()
-	json = parse_json(content)
-
+	file.open("res://text_random.json", File.READ)
+	content = file.get_as_text()
+	json_random = parse_json(content)
+	file.close()
 
 func _on_CharacterTimer_timeout():
 	label.visible_characters += 1
@@ -59,7 +81,7 @@ func _on_DisappearTimer_timeout():
 	print ("I triggered")
 	if more_sentences:
 		label.visible_characters = 0
-		reading_sentence(more_sentences)
+		reading_sentence(more_sentences, type_sentence)
 		chara_timer.start()
 	else:
 		textbox.visible = false
