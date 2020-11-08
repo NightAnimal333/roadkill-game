@@ -16,7 +16,7 @@ var savegame = null
 var player
 
 onready var game_music_player = $GameMusicPlayer
-onready var splat_sound_player = $SplatSoundPlayer
+onready var splat_sound = $SplatSoundPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,11 +29,10 @@ func _process(delta):
 		game_state = States.RoadLevel
 		current_level.connect("level_over", self, "restart_level")
 
-func restart_level(cause_of_death):
-	match cause_of_death:
-		splat_sound_player.play()
-		game_music_player.seek(6.0)
-		game_state = States.InitialiseLevel
+func restart_level():
+	splat_sound.play()
+	game_music_player.seek(6.0)
+	game_state = States.InitialiseLevel
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
