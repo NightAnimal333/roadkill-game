@@ -7,7 +7,7 @@ var x_speed : float = 250
 var direction = -1
 
 onready var splat_sound = $SplatSound
-
+onready var sprite = $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,8 +19,6 @@ func _physics_process(delta):
 	var velocity = Vector2(x_speed * direction, 0)
 	
 	self.move_and_slide(velocity)
-	
-
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("KillZone"):
