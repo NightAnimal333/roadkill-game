@@ -8,7 +8,6 @@ var json
 
 var more_sentences
 
-var debug 
 
 # 1) Set text to the correct text with set text
 # 2) Reveal text with characterTimer on timeout
@@ -20,7 +19,7 @@ var debug
 func _ready():
 	read_from_file()
 	
-	debug = reading_sentence(22)
+#	reading_sentence(11)
 
 func _process(_delta):
 	

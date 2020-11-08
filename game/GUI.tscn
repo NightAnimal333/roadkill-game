@@ -3,12 +3,10 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="QuestLog" type="Control" parent="."]
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.89087
-margin_top = -0.327301
-margin_right = 2.89087
-margin_bottom = -0.327271
+margin_left = -1024.0
+margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

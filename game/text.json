@@ -1,18 +1,18 @@
 [{
 	"id": "0",
-	"sentence": "Oy, this movie really was something!",
+	"sentence": "Wait, did you really forget about your child? How can you forget about a child?",
 	"next": "1"
 }, {
 	"id": "1",
-	"sentence": "I particularily liked the part where the rabbit got driven over.",
+	"sentence": "Poor Gabriel is probably [shake rate=5 level=10] shaking [/shake] right now. What if he is crying now?",
 	"next": "2"
 }, { 
 	"id": "2",
-	"sentence": "Nothing like seeing wildlife die horribly, don't you think...? No...?",
+	"sentence": "When will I have kids? Probably never, why do you ask?",
 	"next": "-1"
 }, {
 	"id": "3",
-	"sentence": "I mean, you've gotta admit, the movie was actually really fun. It had a lot of fun character like Nukky the Cracker and Daphne the Detective",
+	"sentence": "Remember that one time when we were watching movies? What was your favorite character? Mine was Nakky the detective!",
 	"next": "-1"
 }, {
 	"id": "4",
@@ -24,11 +24,11 @@
 	"next": "-1"
 }, {
 	"id": "6",
-	"sentence": "Sometimes I wonder if there is any reason behind you driving. Why do you move forward?",
+	"sentence": "Sometimes I wonder if there is any reason behind us driving. Why do we move forward?",
 	"next": "-1"
 }, {
 	"id": "7",
-	"sentence": "Hey driver! Put on some rock music for me! You like the the current track? Are you sure we can't change...?",
+	"sentence": "Hey honey! Put on some rock music for me! You like the the current track? Are you sure we can't change...?",
 	"next": "-1"
 }, {
 	"id": "8",
@@ -36,7 +36,7 @@
 	"next": "9"
 }, {
 	"id": "9",
-	"sentence": "If think you are just to paranoid right now. Relax and let the car go.",
+	"sentence": "I think you are just to paranoid right now. Relax and let the car go.",
 	"next": "-1"
 }, {
 	"id": "10",
@@ -44,7 +44,7 @@
 	"next": "-1"
 }, {
 	"id": "11",
-	"sentence": "[fade start=4 length=20]Hey driver, I am the batman![/fade]     ...nevermind...",
+	"sentence": "[fade start=4 length=22]Hey honey, I am the batman![/fade]     ...nevermind...",
 	"next": "-1"
 }, {
 	"id": "12",
@@ -92,7 +92,7 @@
 	"next": "23"
 } , {
 	"id": "23",
-	"sentence": "They are just running in front of you... just run over one, please.",
+	"sentence": "They are just running in front of you... just [color=red]run over[/color] one, please.",
 	"next": "-1"
 } , {
 	"id": "24",

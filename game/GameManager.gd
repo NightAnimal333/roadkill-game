@@ -13,6 +13,7 @@ enum States {
 var game_state = States.MainMenu
 var current_level
 var menu
+var dialog
 var savegame = null
 var player
 
@@ -24,6 +25,10 @@ onready var crash_sound_player = $CrashSoundPlayer
 
 func _ready():
 	state_machine(States.MainMenu)
+	
+
+func _process(delta):
+	dialogue_state()
 
 func state_machine(state):
 	game_state = state
@@ -36,8 +41,14 @@ func state_machine(state):
 		States.InitialiseLevel:
 			current_level = load("res://Road.tscn").instance()
 			self.add_child(current_level)
+			dialog = load("res://Dialogue.tscn").instance()
+			self.add_child(dialog)
 			game_state = States.RoadLevel
 			current_level.connect("level_over", self, "restart_level")
+
+func dialogue_state():
+	if current_level != null:
+		dialog.reading_sentence(4)
 
 func start_game():
 	menu.queue_free()
@@ -57,6 +68,7 @@ func restart_level(cause):
 			crash_sound_player.play()
 			
 	game_music_player.seek(6.0)
+	dialog.queue_free()
 	state_machine(States.InitialiseLevel)
 
 func _on_GameMusicPlayer_finished():
