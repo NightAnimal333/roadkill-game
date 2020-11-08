@@ -1,11 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://res/bunny.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Roadkill.gd" type="Script" id=2]
 [ext_resource path="res://res/spritesheet_bunny_up.png" type="Texture" id=3]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 10.324
+[ext_resource path="res://Actors/Hitbox.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -100,20 +98,29 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 10.324
+
 [node name="Roadkill" type="KinematicBody2D"]
 position = Vector2( 253.212, 196.001 )
 script = ExtResource( 2 )
 
-[node name="Roadkill" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 18 )
 animation = "up"
-frame = 6
+frame = 1
 speed_scale = 5.0
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"Roadkill",
+]]
+script = ExtResource( 4 )
+
+[node name="Roadkill" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="hit_by_car" from="Hitbox" to="." method="_on_Hitbox_hit_by_car"]

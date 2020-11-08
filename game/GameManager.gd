@@ -16,6 +16,7 @@ var savegame = null
 var player
 
 onready var game_music_player = $GameMusicPlayer
+onready var splat_sound_player = $SplatSoundPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,7 @@ func _process(delta):
 		current_level.connect("level_over", self, "restart_level")
 
 func restart_level():
+	splat_sound_player.play()
 	game_music_player.seek(6.0)
 	game_state = States.InitialiseLevel
 
