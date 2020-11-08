@@ -17,6 +17,8 @@ var velocity : Vector2
 
 var in_mud : bool = 0
 
+onready var splat_sound = $SplatSound
+
 func _ready():
 	velocity.x = 100
 	velocity.y = 0
@@ -72,17 +74,18 @@ func speed_up():
 	self.MAX_SPEED_Y = 200
 	
 	self.in_mud = false
-	
-
-func _on_Hitbox_body_shape_entered(body_id, body, body_shape, area_shape):
-	emit_signal("roadkill_killed")
-	self.queue_free()
 
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("SlowZone"):
 		self.slow_down()
 	elif area.is_in_group("Trees"):
+		emit_signal("roadkill_killed")
+		self.queue_free()
+	elif area.is_in_group("Bypasser"):
+		emit_signal("roadkill_killed")
+		self.queue_free()
+	elif area.is_in_group("Roadkill"):
 		emit_signal("roadkill_killed")
 		self.queue_free()
 

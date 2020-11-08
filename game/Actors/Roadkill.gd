@@ -31,3 +31,8 @@ func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int):
 func _on_Timer_timeout():
 	emit_signal("time_to_die", self)
 	self.queue_free()	
+
+
+func _on_Hitbox_hit_by_car():
+	emit_signal("time_to_die", self)
+	self.queue_free()	

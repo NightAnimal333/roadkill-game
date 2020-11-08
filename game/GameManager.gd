@@ -18,17 +18,7 @@ var player
 
 
 onready var game_music_player = $GameMusicPlayer
-
-
-#func _process(delta):
-#	match game_state:
-#		States.MainMenu:
-#			pass
-#		States.InitialiseLevel:
-#			current_level = load("res://Road.tscn").instance()
-#			self.add_child(current_level)
-#			game_state = States.RoadLevel
-#			current_level.connect("level_over", self, "restart_level")
+onready var splat_sound_player = $SplatSoundPlayer
 
 
 func _ready():
@@ -56,6 +46,7 @@ func end_game():
 	get_tree().quit()
 
 func restart_level():
+	splat_sound_player.play()
 	game_music_player.seek(6.0)
 	state_machine(States.InitialiseLevel)
 
