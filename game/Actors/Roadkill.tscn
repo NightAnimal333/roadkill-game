@@ -1,49 +1,30 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://res/bunny.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Roadkill.gd" type="Script" id=2]
 [ext_resource path="res://res/spritesheet_bunny_up.png" type="Texture" id=3]
 [ext_resource path="res://Actors/Hitbox.gd" type="Script" id=4]
+[ext_resource path="res://res/cow.png" type="Texture" id=5]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 43, 45 )
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 43, 0, 43, 45 )
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 86, 0, 43, 45 )
+atlas = ExtResource( 5 )
+region = Rect2( 256, 0, 128, 128 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 45, 43, 45 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 43, 45, 43, 45 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 86, 45, 43, 45 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 90, 43, 45 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 43, 90, 43, 45 )
+atlas = ExtResource( 5 )
+region = Rect2( 384, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -85,16 +66,86 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 135, 51, 45, 51 )
 
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 256, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 384, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 43, 0, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 86, 0, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 45, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 43, 45, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 86, 45, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 90, 43, 45 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 43, 90, 43, 45 )
+
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
-"name": "up",
+"name": "cow_up",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
-"name": "down",
+"name": "rabbit_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "cow_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "rabbit_up",
 "speed": 5.0
 } ]
 
@@ -106,10 +157,10 @@ position = Vector2( 253.212, 196.001 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -37, -82 )
 frames = SubResource( 18 )
-animation = "up"
-frame = 4
-speed_scale = 5.0
+animation = "cow_down"
+frame = 3
 playing = true
 
 [node name="Timer" type="Timer" parent="."]

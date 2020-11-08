@@ -72,14 +72,22 @@ func generate_roadkill():
 		#How far away the roadkil will spawn on x-axis
 		var distance = ROADKILL_SPAWN_DISTANCE_MIN + (randi() % ROADKILL_SPAWN_DISTANCE_RANGE)
 	
+		var type = ""
+	
+		var generate_type = randi() % 2
+		match generate_type:
+			0:
+				type = "rabbit"
+			1:
+				type = "cow"
 		
 		#Downwards
 		if direction == 1:
-			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + ROADKILL_SPAWN_DISTANCE_MIN, ROADKILL_SPAWN_UP), 500 * direction, 7)
+			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + ROADKILL_SPAWN_DISTANCE_MIN, ROADKILL_SPAWN_UP), 500 * direction, 7, type)
 		
 		#Upwards		
 		elif direction == -1:
-			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + ROADKILL_SPAWN_DISTANCE_MIN, ROADKILL_SPAWN_DOWN), 500 * direction, 7)
+			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + ROADKILL_SPAWN_DISTANCE_MIN, ROADKILL_SPAWN_DOWN), 500 * direction, 7, type)
 				
 		roadkill[roadkill.size() - 1].connect("time_to_die", self, "remove_roadkill")
 
