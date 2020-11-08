@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_over
+signal level_over(cause)
 
 # Y-coordinate where the roadkill spawns
 # TODO: Instead of this use screen boundaries or something
@@ -86,7 +86,7 @@ func generate_roadkill():
 				
 		roadkill[roadkill.size() - 1].connect("time_to_die", self, "remove_roadkill")
 
-func emit_level_over():
-	print("You dead!")
-	emit_signal("level_over")
+func emit_level_over(cause):
+	print("You dead!: " + cause)
+	emit_signal("level_over", cause)
 	self.queue_free()
