@@ -48,7 +48,7 @@ func start_game():
 func end_game():
 	get_tree().quit()
 
-func restart_level(cause):
+func restart_level(cause, distance):
 	print(cause)
 	match cause:
 		"roadkill_killed":

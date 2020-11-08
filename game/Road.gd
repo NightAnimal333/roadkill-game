@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_over(cause)
+signal level_over(cause, traveled)
 
 onready var warning_sign = preload("res://Warning.tscn")
 
@@ -25,6 +25,9 @@ var bypassers = []
 
 var distance_traveled : float = 0
 
+var is_player_in_opposite : bool = false
+var time_spent_in_opposite : float = 0
+
 onready var player = $Player
 onready var road_zones = $RoadZones
 
@@ -44,10 +47,14 @@ func _process(delta):
 	
 	print(player.traveled)	
 	print(player.calculated_speed)	
+	print(time_spent_in_opposite)
 	
 	if (player.traveled > DISTANCE_TO_WIN):
-		emit_signal("level_over", "victory_distance")
+		emit_signal("level_over", "victory_distance", player.traveled)
 		self.queue_free()
+		
+	if is_player_in_opposite:
+		time_spent_in_opposite += delta
 	
 
 func generate_bypasser():
@@ -136,5 +143,13 @@ func generate_roadkill():
 
 func emit_level_over(cause):
 	print("You dead!: " + cause)
-	emit_signal("level_over", cause)
+	emit_signal("level_over", cause, player.traveled)
 	self.queue_free()
+
+
+func _on_OppositeLaneZone_area_entered(area):
+	self.is_player_in_opposite = true
+
+
+func _on_OppositeLaneZone_area_exited(area):
+	self.is_player_in_opposite = false
