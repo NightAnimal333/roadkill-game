@@ -28,7 +28,6 @@ func _ready():
 	read_from_file()
 	label.visible_characters = 0
 	chara_timer.stop()
-	print (json_random)
 
 func _process(_delta):
 	checker()
