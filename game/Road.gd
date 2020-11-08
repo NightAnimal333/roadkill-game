@@ -74,12 +74,14 @@ func generate_roadkill():
 	
 		var type = ""
 	
-		var generate_type = randi() % 2
+		var generate_type = randi() % 3
 		match generate_type:
 			0:
 				type = "rabbit"
 			1:
 				type = "cow"
+			2:
+				type = "bear"
 		
 		#Downwards
 		if direction == 1:
