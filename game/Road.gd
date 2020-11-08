@@ -27,7 +27,7 @@ func remove_roadkill(roadkill_obj):
 
 
 func _ready():
-	player.connect("roadkill_killed", self, "emit_level_over")
+	player.connect("player_lost", self, "emit_level_over")
 
 
 func _process(delta):
@@ -41,7 +41,6 @@ func generate_bypasser():
 	randomize()
 	
 	var generate_bypasser = randi() % 500
-	print(generate_bypasser)
 	if (generate_bypasser > 495):
 		bypassers.append(load("res://Actors/Bypasser.tscn").instance())
 		self.add_child(bypassers[bypassers.size() - 1])

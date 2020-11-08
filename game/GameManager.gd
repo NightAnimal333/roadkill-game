@@ -18,7 +18,8 @@ var player
 
 
 onready var game_music_player = $GameMusicPlayer
-onready var splat_sound = $SplatSoundPlayer
+onready var splat_sound_player = $SplatSoundPlayer
+onready var crash_sound_player = $CrashSoundPlayer
 
 
 func _ready():
@@ -45,8 +46,16 @@ func start_game():
 func end_game():
 	get_tree().quit()
 
-func restart_level():
-	splat_sound.play()
+func restart_level(cause):
+	print(cause)
+	match cause:
+		"roadkill_killed":
+			splat_sound_player.play()
+		"bypasser_crashed":
+			crash_sound_player.play()
+		"tree_hit":
+			crash_sound_player.play()
+			
 	game_music_player.seek(6.0)
 	state_machine(States.InitialiseLevel)
 

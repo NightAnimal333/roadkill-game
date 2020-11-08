@@ -108,6 +108,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 18 )
 animation = "up"
+frame = 4
 speed_scale = 5.0
 playing = true
 
