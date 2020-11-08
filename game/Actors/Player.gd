@@ -53,8 +53,6 @@ func _process(delta):
 		#		self.rotate(Vector2(self.position.x + 1, velocity.y).angle() * -1)
 		
 	
-	print (velocity)
-	print (MAX_SPEED_X)
 	
 			
 func _physics_process(_delta):

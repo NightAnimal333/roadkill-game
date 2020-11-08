@@ -1,16 +1,14 @@
 extends CanvasLayer
 
-onready var label = $TextureRect/RichTextLabel
+onready var label = $RichTextLabel
 onready var textbox = $TextureRect
-onready var chara_timer = $TextureRect/RichTextLabel/CharacterTimer
-onready var disa_timer = $TextureRect/RichTextLabel/DisappearTimer
+onready var chara_timer = $RichTextLabel/CharacterTimer
+onready var disa_timer = $RichTextLabel/DisappearTimer
 var json 
 
 var more_sentences
 
 var debug 
-
-
 
 # 1) Set text to the correct text with set text
 # 2) Reveal text with characterTimer on timeout
@@ -22,7 +20,7 @@ var debug
 func _ready():
 	read_from_file()
 	
-	debug = reading_sentence(0)
+	debug = reading_sentence(22)
 
 func _process(_delta):
 	
@@ -30,6 +28,9 @@ func _process(_delta):
 
 
 func reading_sentence(sentence_number):
+	textbox.visible = true
+	label.visible = true
+	
 	label.bbcode_text = json[sentence_number].sentence
 	if json[sentence_number].next != "-1":
 		more_sentences = int(json[sentence_number].next)
