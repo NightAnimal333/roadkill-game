@@ -1,20 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GameManager.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://res/car-chase.wav" type="AudioStream" id=3]
 [ext_resource path="res://res/splat.wav" type="AudioStream" id=4]
 [ext_resource path="res://res/glass_break.wav" type="AudioStream" id=5]
+[ext_resource path="res://res/victory.wav" type="AudioStream" id=6]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="GameMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-autoplay = true
+
+[node name="Dialogue" parent="." instance=ExtResource( 2 )]
 
 [node name="SplatSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
 [node name="CrashSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="VictorySoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 [connection signal="finished" from="GameMusicPlayer" to="." method="_on_GameMusicPlayer_finished"]

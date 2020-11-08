@@ -4,6 +4,8 @@ signal level_over(cause)
 
 onready var warning_sign = preload("res://Warning.tscn")
 
+var DISTANCE_TO_WIN : float = 10000
+
 # Y-coordinate where the roadkill spawns
 # TODO: Instead of this use screen boundaries or something
 var ROADKILL_SPAWN_UP : float = 0
@@ -21,6 +23,8 @@ var roadkill = []
 
 var bypassers = []
 
+var distance_traveled : float = 0
+
 onready var player = $Player
 onready var road_zones = $RoadZones
 
@@ -37,7 +41,14 @@ func _process(delta):
 	
 	self.generate_roadkill()
 	self.generate_bypasser()
-
+	
+	print(player.traveled)	
+	print(player.calculated_speed)	
+	
+	if (player.traveled > DISTANCE_TO_WIN):
+		emit_signal("level_over", "victory_distance")
+		self.queue_free()
+	
 
 func generate_bypasser():
 	randomize()

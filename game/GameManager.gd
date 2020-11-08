@@ -20,6 +20,7 @@ var player
 onready var game_music_player = $GameMusicPlayer
 onready var splat_sound_player = $SplatSoundPlayer
 onready var crash_sound_player = $CrashSoundPlayer
+onready var victory_sound_player = $VictorySoundPlayer
 
 
 func _ready():
@@ -38,6 +39,7 @@ func state_machine(state):
 			self.add_child(current_level)
 			game_state = States.RoadLevel
 			current_level.connect("level_over", self, "restart_level")
+			game_music_player.play()
 
 func start_game():
 	menu.queue_free()
@@ -51,13 +53,21 @@ func restart_level(cause):
 	match cause:
 		"roadkill_killed":
 			splat_sound_player.play()
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
 		"bypasser_crashed":
 			crash_sound_player.play()
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
 		"tree_hit":
 			crash_sound_player.play()
-			
-	game_music_player.seek(6.0)
-	state_machine(States.InitialiseLevel)
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
+		"victory_distance":
+			game_music_player.stop()
+			victory_sound_player.play()
+			state_machine(States.MainMenu)
+
 
 func _on_GameMusicPlayer_finished():
 	game_music_player.play()

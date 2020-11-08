@@ -402,7 +402,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 18 )
 animation = "cat_beige_down"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
