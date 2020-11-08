@@ -47,6 +47,11 @@ onready var warn_holder = $WarningsHolder
 onready var warn_pos_up = $WarningsHolder/WarningUp
 onready var warn_pos_down = $WarningsHolder/WarningDown
 
+onready var opp_out_lane = $OppositeOuterLane
+onready var opp_inn_lane = $OppositeInnerLane
+onready var sam_inn_lane = $SameInnerLane
+onready var sam_out_lane = $SameOuterLane
+
 func _ready():
 	player.connect("player_lost", self, "emit_level_over")
 	for i in range(25):
@@ -115,17 +120,30 @@ func generate_bypasser():
 		bypassers.append(load("res://Actors/Bypasser.tscn").instance())
 		self.add_child(bypassers[bypassers.size() - 1])
 		
-		var lane = randi() % 2	
+		var temp_random = randi() % 1000
 		
-		#Fix the hardcoded numbers
-		#Downwards
-		if lane == 0:
-			bypassers[bypassers.size() - 1].position = Vector2(1606 + player.position.x, 344)
+		var lane : int
 		
-		#Upwards		
-		elif lane == 1:
-			bypassers[bypassers.size() - 1].position = Vector2(1814 + player.position.x, 253)
-				
+		# 99,8% chance to get a car in opposite lane
+		if temp_random > 998:
+			lane = temp_random % 2
+			match lane:
+				0:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_out_lane.position.y)
+				1:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, opp_inn_lane.position.y)
+		
+		# 0,2% chance to get car in same lane
+		else:
+			lane = temp_random % 2
+			match lane:
+				0:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, sam_inn_lane.position.y)
+				1:
+					bypassers[bypassers.size() - 1].position = Vector2(1000 + player.position.x, sam_out_lane.position.y)
+			bypassers[bypassers.size() - 1].x_speed *= -1
+			bypassers[bypassers.size() - 1].rotate(3.141593)
+	
 
 
 func generate_roadkill():

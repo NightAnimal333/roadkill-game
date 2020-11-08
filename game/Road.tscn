@@ -310,5 +310,17 @@ position = Vector2( 208.636, -2.76218 )
 shape = SubResource( 4 )
 
 [node name="Dialogue" parent="." instance=ExtResource( 9 )]
+
+[node name="OppositeOuterLane" type="Position2D" parent="."]
+position = Vector2( 537, 252 )
+
+[node name="OppositeInnerLane" type="Position2D" parent="."]
+position = Vector2( 537, 338 )
+
+[node name="SameInnerLane" type="Position2D" parent="."]
+position = Vector2( 537, 440 )
+
+[node name="SameOuterLane" type="Position2D" parent="."]
+position = Vector2( 537, 529 )
 [connection signal="area_entered" from="RoadZones/OppositeLaneZone" to="." method="_on_OppositeLaneZone_area_entered"]
 [connection signal="area_exited" from="RoadZones/OppositeLaneZone" to="." method="_on_OppositeLaneZone_area_exited"]
