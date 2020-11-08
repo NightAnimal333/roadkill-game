@@ -27,7 +27,7 @@ func _process(delta):
 	
 	
 	if Input.is_action_pressed("move_brake"):
-		if velocity.x > 50:
+		if velocity.x > 100:
 			velocity *= BRAKE_STEP
 		else:
 			velocity.x = 0 
