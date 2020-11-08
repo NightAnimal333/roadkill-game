@@ -25,8 +25,6 @@ var in_mud : bool = 0
 var traveled : float = 0
 var time_braking : float = 0
 
-onready var splat_sound = $SplatSound
-
 func _ready():
 	self.previous_position = self.position
 	velocity.x = 100
