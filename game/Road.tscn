@@ -1,14 +1,11 @@
+
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://res/road.jpg" type="Texture" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://res/grass.png" type="Texture" id=3]
 [ext_resource path="res://res/tree1.png" type="Texture" id=4]
-[ext_resource path="res://res/tree2.png" type="Texture" id=5]
 [ext_resource path="res://Road.gd" type="Script" id=6]
-[ext_resource path="res://res/tree3.png" type="Texture" id=7]
-[ext_resource path="res://res/tree4.png" type="Texture" id=8]
-[ext_resource path="res://Camera2D.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 821.937, 117.29 )
@@ -26,7 +23,7 @@ script = ExtResource( 6 )
 position = Vector2( 484.147, 529.495 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 377.047, -12.4814 )
+position = Vector2( 583.226, 2.79118 )
 scale = Vector2( 5.90667, 1.07017 )
 current = true
 limit_top = 0
@@ -70,7 +67,6 @@ scale = Vector2( 0.24, 1 )
 texture = ExtResource( 3 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-layer = 0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 1400, 0 )
@@ -78,34 +74,17 @@ motion_mirroring = Vector2( 1400, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( 184.208, 49.3891 )
 scale = Vector2( 3, 3 )
-texture = ExtResource( 4 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 539.327, 45.8732 )
-scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 4 )
 
-[node name="Sprite25" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 30.3188, 28.2343 )
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 524.208, 111.389 )
 scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 4 )
 
 [node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 993.045, 35.3532 )
-scale = Vector2( 3, 3 )
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="Sprite26" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 75.8226, 728.31 )
-scale = Vector2( 3, 3 )
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="Sprite27" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -7.33221, 710.671 )
+position = Vector2( 950.208, 103.389 )
 scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 4 )
@@ -117,7 +96,7 @@ z_index = 1
 texture = ExtResource( 4 )
 
 [node name="Sprite5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 304.93, 673.83 )
+position = Vector2( 340.208, 681.389 )
 scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 4 )
@@ -135,7 +114,7 @@ z_index = 1
 texture = ExtResource( 4 )
 
 [node name="Sprite8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1104.73, 681.107 )
+position = Vector2( 1102.21, 653.389 )
 scale = Vector2( 3, 3 )
 z_index = 1
 texture = ExtResource( 4 )
@@ -146,86 +125,6 @@ scale = Vector2( 3, 3 )
 z_index = 100
 z_as_relative = false
 texture = ExtResource( 4 )
-
-[node name="Sprite10" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 302.509, -3.41965 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
-
-[node name="Sprite11" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1208.03, -32.7081 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
-
-[node name="Sprite12" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 808.393, 703.627 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
-
-[node name="Sprite13" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 453.572, 25.1984 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite28" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -45.3571, 7.55954 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite14" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 622.401, 20.1587 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 788.71, 32.7579 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite16" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1101.17, 37.7976 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite17" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 897.063, 5.03966 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite18" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 536.726, 667.758 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite19" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 158.75, 670.278 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite20" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 420.813, 710.595 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="Sprite21" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1028.09, 715.635 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 8 )
-
-[node name="Sprite22" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1191.88, 715.635 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 8 )
-
-[node name="Sprite23" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 687.916, 35.2778 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 8 )
-
-[node name="Sprite24" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 103.313, 65.5159 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 8 )
 
 [node name="RoadZones" type="Node2D" parent="."]
 position = Vector2( -265.872, 0 )

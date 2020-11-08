@@ -11,7 +11,6 @@ animations = [ {
 } ]
 
 [node name="Warning" type="AnimatedSprite"]
-position = Vector2( 2.11896, -2.11896 )
 frames = SubResource( 1 )
 frame = 2
 playing = true
