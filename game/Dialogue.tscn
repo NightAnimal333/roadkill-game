@@ -12,25 +12,29 @@ font_data = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 128.0
-margin_top = -160.0
-margin_right = 928.0
-margin_bottom = 140.0
-rect_scale = Vector2( 0.960002, 0.48 )
+margin_left = -395.51
+margin_top = -156.325
+margin_right = 404.49
+margin_bottom = 143.675
+rect_scale = Vector2( 1, 0.48 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 152.0
-margin_top = 456.0
-margin_right = -148.0
-margin_bottom = -34.0
+margin_left = -369.02
+margin_top = -139.959
+margin_right = 386.98
+margin_bottom = -17.9594
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 visible_characters = 0
