@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_over(cause, traveled)
+signal level_over(cause, stats)
 
 onready var warning_sign = preload("res://Warning.tscn")
 
@@ -23,10 +23,12 @@ var roadkill = []
 
 var bypassers = []
 
-var distance_traveled : float = 0
+var player_statistics = {"Distance traveled": 0.0,
+						"Time traveled": 0.0,
+						"Time in opposite lane": 0.0,
+						"Maximum speed": 0.0}
 
 var is_player_in_opposite : bool = false
-var time_spent_in_opposite : float = 0
 
 onready var player = $Player
 onready var road_zones = $RoadZones
@@ -45,16 +47,17 @@ func _process(delta):
 	self.generate_roadkill()
 	self.generate_bypasser()
 	
-	print(player.traveled)	
-	print(player.calculated_speed)	
-	print(time_spent_in_opposite)
+	player_statistics["Distance traveled"] += player.traveled
+	player_statistics["Time traveled"] += delta
+	if player.calculated_speed > player_statistics["Maximum speed"]:
+		player_statistics["Maximum speed"] = player.calculated_speed
 	
 	if (player.traveled > DISTANCE_TO_WIN):
 		emit_signal("level_over", "victory_distance", player.traveled)
 		self.queue_free()
 		
 	if is_player_in_opposite:
-		time_spent_in_opposite += delta
+		player_statistics["Time in opposite lane"] += delta
 	
 
 func generate_bypasser():
@@ -143,7 +146,7 @@ func generate_roadkill():
 
 func emit_level_over(cause):
 	print("You dead!: " + cause)
-	emit_signal("level_over", cause, player.traveled)
+	emit_signal("level_over", cause, player_statistics)
 	self.queue_free()
 
 
