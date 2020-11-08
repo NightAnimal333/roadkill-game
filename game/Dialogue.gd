@@ -7,7 +7,7 @@ onready var disa_timer = $RichTextLabel/DisappearTimer
 var json 
 
 var more_sentences
-
+var still_reading = false
 
 # 1) Set text to the correct text with set text
 # 2) Reveal text with characterTimer on timeout
@@ -27,6 +27,7 @@ func _process(_delta):
 
 func reading_sentence(sentence_number):
 	chara_timer.start()
+	still_reading = true
 	textbox.visible = true
 	label.visible = true
 	
@@ -64,3 +65,4 @@ func _on_DisappearTimer_timeout():
 		textbox.visible = false
 		label.visible_characters = 0
 		label.visible = false
+		still_reading = false

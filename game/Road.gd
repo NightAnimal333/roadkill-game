@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_over(cause, traveled)
+signal level_over(cause, stats)
 
 onready var warning_sign = preload("res://Warning.tscn")
 
@@ -23,10 +23,13 @@ var roadkill = []
 
 var bypassers = []
 
-var distance_traveled : float = 0
+var player_statistics = {"Distance traveled": 0.0,
+						"Time traveled": 0.0,
+						"Time in opposite lane": 0.0,
+						"Maximum speed": 0.0}
+
 
 var is_player_in_opposite : bool = false
-var time_spent_in_opposite : float = 0
 
 # Keeps track of which dialogues were already used
 var dialog_array : Array 
@@ -43,31 +46,44 @@ func _ready():
 
 func _process(delta):
 	dialog_manager()
+	print (player_statistics["Maximum speed"])
+	print (player_statistics["Time in opposite lane"])
+	
 	road_zones.position.x = player.position.x - 500
 	
 	self.generate_roadkill()
 	self.generate_bypasser()
-#
-#	print(player.traveled)	
-	print(player.calculated_speed)	
-	print(time_spent_in_opposite)
+	
+	player_statistics["Distance traveled"] += player.traveled
+	player_statistics["Time traveled"] += delta
+	if player.calculated_speed > player_statistics["Maximum speed"]:
+		player_statistics["Maximum speed"] = player.calculated_speed
 	
 	if (player.traveled > DISTANCE_TO_WIN):
 		emit_signal("level_over", "victory_distance", player.traveled)
 		self.queue_free()
 		
 	if is_player_in_opposite:
-		time_spent_in_opposite += delta
+		player_statistics["Time in opposite lane"] += delta
 	
 
+#"Distance traveled"
+#"Time traveled"
+#"Time in opposite lane"
+#"Maximum speed"
 
 func dialog_manager():
-	if player.calculated_speed >= 80 and dialog_array[4] == true:
-		dialog.reading_sentence(4)
-		dialog_array[4] = false
-	if time_spent_in_opposite >= 2 and dialog_array[24] == true:
-		dialog.reading_sentence(24)
-		dialog_array[24] = false
+	if dialog.still_reading == false:
+		if player.calculated_speed >= 80 and dialog_array[4] == true:
+			dialog.reading_sentence(4)
+			dialog_array[4] = false
+		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[24] == true:
+			dialog.reading_sentence(24)
+			dialog_array[24] = false
+		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15]:
+			dialog.reading_sentence(15)
+			dialog_array[15]
+#		if player_statistics[""]
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)
@@ -159,7 +175,7 @@ func generate_roadkill():
 
 func emit_level_over(cause):
 	print("You dead!: " + cause)
-	emit_signal("level_over", cause, player.traveled)
+	emit_signal("level_over", cause, player_statistics)
 	self.queue_free()
 
 
