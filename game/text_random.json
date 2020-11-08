@@ -1,11 +1,11 @@
 [
 	{
 	"id": "0",
-	"sentence": "Do you find me annoying? ",
+	"sentence": "Do you find me annoying?",
 	"next": "-1"
 }, 	{
 	"id": "1",
-	"sentence": "Do you find me annoying? ",
+	"sentence": "Do you find me annoying?",
 	"next": "-1"
 }, {
 	"id": "2",
@@ -22,10 +22,10 @@
 }, {
 	"id": "5",
 	"sentence": "Quaggas are animals of marvel They are so beautiful and majestatic!",
-	"next": "6"
+	"next": "-1"
 }, {
 	"id": "6",
-	"sentence": "...wait, what do you mean they are [color=red]extinct[/color]?! Impossible, I just saw one recently!",
+	"sentence": "Wait, the Quaggas are dead? I didn't know they died. When did that happen?",
 	"next": "-1"
 }, {
 	"id": "7",
@@ -33,15 +33,15 @@
 	"next": "-1"
 }, {
 	"id": "8",
-	"sentence": "Do you find me annoying? ",
+	"sentence": "It's me Sand from Overtale",
 	"next": "-1"
 }, {
 	"id": "9",
-	"sentence": "If you think you are smart, what's '2 + 2'?",
-	"next": "10"
+	"sentence": "If you think you are smart, what's '2 + 2'? Obviously you won't be able to answer that.",
+	"next": "-1"
 }, {
 	"id": "10",
-	"sentence": "Can't answer? Duuh, obviously. It's too hard for you.",
+	"sentence": "Will Will Smith smith? Yes Will Smith will smith",
 	"next": "-1"
 }
 

@@ -40,6 +40,7 @@ var is_player_in_opposite : bool = false
 
 # Keeps track of which dialogues were already used
 var dialog_array : Array 
+var dialog_random : Array
 
 onready var player = $Player
 onready var road_zones = $RoadZones
@@ -57,13 +58,16 @@ func _ready():
 	player.connect("player_lost", self, "emit_level_over")
 	for i in range(25):
 		dialog_array.append(true)
+	for i in range(len(dialog.json_random)):
+		dialog_random.append(i)
+
 
 
 func _process(delta):
 	dialog_manager()
 #	print (player_statistics["Maximum speed"])
 #	print (player_statistics["Time in opposite lane"])
-	print (player_statistics["Distance traveled"])
+#	print (player_statistics["Distance traveled"])
 	
 	road_zones.position.x = player.position.x - 500
 	
@@ -92,20 +96,27 @@ func _process(delta):
 #"Maximum speed"
 
 func dialog_manager():
-	pass
-#	if dialog.still_reading == false:
-#		if player.calculated_speed >= 80 and player_statistics["Time traveled"] > 5 and dialog_array[4] == true:
-#			dialog.reading_sentence(4)
-#			dialog_array[4] = false
-#		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[24] == true:
-#			dialog.reading_sentence(24)
-#			dialog_array[24] = false
-#		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15] == true:
-#			dialog.reading_sentence(15)
-#			dialog_array[15] = false
-#		if player_statistics["Time braking"] >= 5 and dialog_array[8] == true:
-#			dialog.reading_sentence(8)
-#			dialog_array[8] = false
+	if dialog.still_reading == false:
+		if player_statistics["Maximum speed"] >= 80 and player_statistics["Time traveled"] > 5 and dialog_array[3] == true:
+			dialog.reading_sentence(3, Sentences.REAL)
+			dialog_array[3] = false
+		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[15] == true:
+			dialog.reading_sentence(15, Sentences.REAL)
+			dialog_array[15] = false
+		if player_statistics["Time braking"] >= 5 and dialog_array[8] == true:
+			dialog.reading_sentence(8, Sentences.REAL)
+			dialog_array[8] = false
+		
+		randomize()
+		if len(dialog_random) > 0:
+			var rng = randi() % 20000
+			if rng >= 19950:
+				print (dialog_random)
+				var random_sentence = randi() % len(dialog_random)
+				print (dialog_random[random_sentence])
+				dialog.reading_sentence(dialog_random[random_sentence], Sentences.RANDOM)
+				dialog_random.remove(random_sentence)
+				print (dialog_random)
 
 func remove_roadkill(roadkill_obj):
 	roadkill.erase(roadkill_obj)

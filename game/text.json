@@ -74,12 +74,6 @@
 	"id": "18",
 	"sentence": "Are",
 	"next": "-1"
-} , {
-
-	"id": "100",
-	"sentence": "I wonder if all these people are going to have fun today",
-	"next" : "-1"
-
 }
 
 ]
