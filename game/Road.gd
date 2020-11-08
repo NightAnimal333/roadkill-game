@@ -148,8 +148,10 @@ func emit_level_over(cause):
 
 
 func _on_OppositeLaneZone_area_entered(area):
-	self.is_player_in_opposite = true
+	if(area.is_in_group("Player")):
+		self.is_player_in_opposite = true
 
 
 func _on_OppositeLaneZone_area_exited(area):
-	self.is_player_in_opposite = false
+	if(area.is_in_group("Player")):	
+		self.is_player_in_opposite = false
