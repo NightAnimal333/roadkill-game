@@ -23,6 +23,7 @@ var MULTIPLIER = 0.1
 var in_mud : bool = 0
 
 var traveled : float = 0
+var time_braking : float = 0
 
 onready var splat_sound = $SplatSound
 
@@ -45,6 +46,7 @@ func _process(delta):
 		else:
 			velocity.x = 0 
 			velocity.y = 0
+		time_braking += delta
 			
 	else:
 		if !in_mud:

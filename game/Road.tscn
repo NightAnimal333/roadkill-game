@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://res/road.jpg" type="Texture" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://res/tree3.png" type="Texture" id=7]
 [ext_resource path="res://res/tree4.png" type="Texture" id=8]
 [ext_resource path="res://Dialogue.tscn" type="PackedScene" id=9]
+[ext_resource path="res://WarningsHolder.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 821.937, 117.29 )
@@ -24,6 +25,19 @@ extents = Vector2( 943.289, 90.1761 )
 
 [node name="Road" type="Node2D"]
 script = ExtResource( 6 )
+
+[node name="WarningsHolder" type="Node2D" parent="."]
+position = Vector2( 521.523, 390.672 )
+scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 10 )
+
+[node name="WarningUp" type="Position2D" parent="WarningsHolder"]
+position = Vector2( 683, -308 )
+scale = Vector2( 1.42857, 1.42857 )
+
+[node name="WarningDown" type="Position2D" parent="WarningsHolder"]
+position = Vector2( 683, 324 )
+scale = Vector2( 1.42857, 1.42857 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 484.147, 529.495 )

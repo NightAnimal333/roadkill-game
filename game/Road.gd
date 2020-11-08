@@ -26,7 +26,8 @@ var bypassers = []
 var player_statistics = {"Distance traveled": 0.0,
 						"Time traveled": 0.0,
 						"Time in opposite lane": 0.0,
-						"Maximum speed": 0.0}
+						"Maximum speed": 0.0,
+						"Time braking": 0.0}
 
 
 var is_player_in_opposite : bool = false
@@ -37,6 +38,9 @@ var dialog_array : Array
 onready var player = $Player
 onready var road_zones = $RoadZones
 onready var dialog = $Dialogue
+onready var warn_holder = $WarningsHolder
+onready var warn_pos_up = $WarningsHolder/WarningUp
+onready var warn_pos_down = $WarningsHolder/WarningDown
 
 func _ready():
 	player.connect("player_lost", self, "emit_level_over")
@@ -54,7 +58,8 @@ func _process(delta):
 	self.generate_roadkill()
 	self.generate_bypasser()
 	
-	player_statistics["Distance traveled"] += player.traveled
+	player_statistics["Distance traveled"] = player.traveled
+	player_statistics["Time braking"] = player.time_braking
 	player_statistics["Time traveled"] += delta
 	if player.calculated_speed > player_statistics["Maximum speed"]:
 		player_statistics["Maximum speed"] = player.calculated_speed
@@ -65,6 +70,10 @@ func _process(delta):
 		
 	if is_player_in_opposite:
 		player_statistics["Time in opposite lane"] += delta
+		
+	print (player_statistics)
+	
+	warn_holder.global_position.x = player.global_position.x
 	
 
 #"Distance traveled"
@@ -73,16 +82,21 @@ func _process(delta):
 #"Maximum speed"
 
 func dialog_manager():
+	
 	if dialog.still_reading == false:
-		if player.calculated_speed >= 80 and dialog_array[4] == true:
+		if player.calculated_speed >= 80 and player_statistics["Time traveled"] > 5 and dialog_array[4] == true:
 			dialog.reading_sentence(4)
 			dialog_array[4] = false
 		if player_statistics["Time in opposite lane"] >= 2 and is_player_in_opposite and dialog_array[24] == true:
 			dialog.reading_sentence(24)
 			dialog_array[24] = false
-		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15]:
+		if player_statistics["Distance traveled"] >= 1000 and dialog_array[15] == true:
 			dialog.reading_sentence(15)
-			dialog_array[15]
+			dialog_array[15] = false
+		if player_statistics["Time braking"] >= 5 and dialog_array[8] == true:
+			dialog.reading_sentence(8)
+			dialog_array[8] = false
+			
 #		if player_statistics[""]
 
 func remove_roadkill(roadkill_obj):
@@ -124,12 +138,12 @@ func generate_roadkill():
 		# Add a warning sign so player can prepare
 		var warn_sign = warning_sign.instance()
 		var player_pos = player.global_position
-		warn_sign.position.x = player_pos.x + distance
+		warn_sign.position.x = distance
 		if direction == 1:
-			warn_sign.position.y = -550
+			warn_sign.position.y = warn_pos_up.position.y
 		elif direction == -1:
-			warn_sign.position.y = 150
-		self.add_child(warn_sign)
+			warn_sign.position.y = warn_pos_down.position.y
+		warn_holder.add_child(warn_sign)
 		
 		yield(get_tree().create_timer(2.0), "timeout")
 		
