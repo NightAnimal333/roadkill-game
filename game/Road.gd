@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_over
+signal level_over(cause)
 
 onready var warning_sign = preload("res://Warning.tscn")
 
@@ -29,7 +29,7 @@ func remove_roadkill(roadkill_obj):
 
 
 func _ready():
-	player.connect("roadkill_killed", self, "emit_level_over")
+	player.connect("player_lost", self, "emit_level_over")
 
 
 func _process(delta):
@@ -86,21 +86,44 @@ func generate_roadkill():
 		warn_sign.queue_free()
 		
 		roadkill.append(load("res://Actors/Roadkill.tscn").instance())
+		
+		var type = ""
+	
+		var generate_type = randi() % 7
+		match generate_type:
+			0:
+				type = "rabbit"
+			1:
+				type = "cow"
+			2:
+				type = "bear"
+			3:
+				type = "fox"
+			4:
+				type = "cat_white"
+			5:
+				type = "cat_black"
+			6:
+				type = "cat_brown"
+			7:
+				type = "cat_beige"
+
+		
 		self.add_child(roadkill[roadkill.size() - 1])
 		
 		
 		#Downwards
 		if direction == 1:
-			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + distance, ROADKILL_SPAWN_UP), 500 * direction, 7)
+			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + distance, ROADKILL_SPAWN_UP), 500 * direction, 7, type)
 		
 		#Upwards		
 		elif direction == -1:
-			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + distance, ROADKILL_SPAWN_DOWN), 500 * direction, 7)
+			roadkill[roadkill.size() - 1].initialise(Vector2(player.position.x + distance, ROADKILL_SPAWN_DOWN), 500 * direction, 7, type)
 				
 		roadkill[roadkill.size() - 1].connect("time_to_die", self, "remove_roadkill")
+		
 
-
-func emit_level_over():
-	print("You dead!")
-	emit_signal("level_over")
+func emit_level_over(cause):
+	print("You dead!: " + cause)
+	emit_signal("level_over", cause)
 	self.queue_free()

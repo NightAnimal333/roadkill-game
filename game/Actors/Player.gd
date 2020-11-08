@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal roadkill_killed
+signal player_lost(cause)
 
 var SPEED_STEP_Y : float = 200
 var SPEED_STEP_X : float = 100
@@ -27,7 +27,7 @@ func _process(delta):
 	
 	
 	if Input.is_action_pressed("move_brake"):
-		if velocity.x > 50:
+		if velocity.x > 100:
 			velocity *= BRAKE_STEP
 		else:
 			velocity.x = 0 
@@ -80,13 +80,13 @@ func _on_Hitbox_area_entered(area):
 	if area.is_in_group("SlowZone"):
 		self.slow_down()
 	elif area.is_in_group("Trees"):
-		emit_signal("roadkill_killed")
+		emit_signal("player_lost", "tree_hit")
 		self.queue_free()
 	elif area.is_in_group("Bypasser"):
-		emit_signal("roadkill_killed")
+		emit_signal("player_lost", "bypasser_crashed")
 		self.queue_free()
 	elif area.is_in_group("Roadkill"):
-		emit_signal("roadkill_killed")
+		emit_signal("player_lost", "roadkill_killed")
 		self.queue_free()
 
 

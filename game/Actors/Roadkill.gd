@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var y_speed : float = 100
+var type : String
 
 onready var timer = $Timer
 onready var sprite = $Sprite
@@ -16,15 +17,17 @@ func _process(delta):
 func _physics_process(delta):
 	move_and_slide(Vector2(0, y_speed))
 
-func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int):
+func initialise(spawn_position : Vector2, new_y_speed : float, life_time : int, new_type : String):
+	
 	timer.start(life_time)
 	self.position = spawn_position
 	y_speed = new_y_speed
+	type = new_type
 	
 	if y_speed >=0:
-		sprite.animation = "down"
+		sprite.animation = type + "_down"
 	else:
-		sprite.animation = "up"
+		sprite.animation = type + "_up"
 	
 	return self
 
