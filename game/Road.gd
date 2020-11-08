@@ -1,8 +1,10 @@
 extends Node2D
 
-signal level_over(cause)
+signal level_over(cause, traveled)
 
 onready var warning_sign = preload("res://Warning.tscn")
+
+var DISTANCE_TO_WIN : float = 10000
 
 # Y-coordinate where the roadkill spawns
 # TODO: Instead of this use screen boundaries or something
@@ -21,22 +23,52 @@ var roadkill = []
 
 var bypassers = []
 
+var distance_traveled : float = 0
+
+var is_player_in_opposite : bool = false
+var time_spent_in_opposite : float = 0
+
+# Keeps track of which dialogues were already used
+var dialog_array : Array 
+
 onready var player = $Player
 onready var road_zones = $RoadZones
-
-func remove_roadkill(roadkill_obj):
-	roadkill.erase(roadkill_obj)
-
+onready var dialog = $Dialogue
 
 func _ready():
 	player.connect("player_lost", self, "emit_level_over")
+	for i in range(23):
+		dialog_array.append(true)
 
 
 func _process(delta):
+	dialog_manager()
 	road_zones.position.x = player.position.x - 500
 	
 	self.generate_roadkill()
 	self.generate_bypasser()
+#
+#	print(player.traveled)	
+	print(player.calculated_speed)	
+#	print(time_spent_in_opposite)
+	
+	if (player.traveled > DISTANCE_TO_WIN):
+		emit_signal("level_over", "victory_distance", player.traveled)
+		self.queue_free()
+		
+	if is_player_in_opposite:
+		time_spent_in_opposite += delta
+	
+
+
+func dialog_manager():
+	if player.calculated_speed >= 80 and dialog_array[4] == true:
+		dialog.reading_sentence(4)
+		dialog_array[4] = false
+
+
+func remove_roadkill(roadkill_obj):
+	roadkill.erase(roadkill_obj)
 
 
 func generate_bypasser():
@@ -125,5 +157,13 @@ func generate_roadkill():
 
 func emit_level_over(cause):
 	print("You dead!: " + cause)
-	emit_signal("level_over", cause)
+	emit_signal("level_over", cause, player.traveled)
 	self.queue_free()
+
+
+func _on_OppositeLaneZone_area_entered(area):
+	self.is_player_in_opposite = true
+
+
+func _on_OppositeLaneZone_area_exited(area):
+	self.is_player_in_opposite = false

@@ -18,15 +18,15 @@ var more_sentences
 
 func _ready():
 	read_from_file()
-	
-#	reading_sentence(11)
+	label.visible_characters = 0
+	chara_timer.stop()
 
 func _process(_delta):
-	
 	checker()
 
 
 func reading_sentence(sentence_number):
+	chara_timer.start()
 	textbox.visible = true
 	label.visible = true
 	

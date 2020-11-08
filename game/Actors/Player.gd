@@ -15,16 +15,29 @@ var ROTATION_X : float = 1000
 
 var velocity : Vector2 
 
+#Only for GUI purposes
+var calculated_speed : float = 0
+var previous_position : Vector2
+var MULTIPLIER = 0.1
+
 var in_mud : bool = 0
+
+var traveled : float = 0
 
 onready var splat_sound = $SplatSound
 
 func _ready():
+	self.previous_position = self.position
 	velocity.x = 100
 	velocity.y = 0
 
 func _process(delta):
 	
+	traveled += (floor(self.position.x) - floor(self.previous_position.x)) * MULTIPLIER
+	if delta != 0:
+		calculated_speed = floor(((self.position.x - self.previous_position.x) / delta)) * MULTIPLIER
+	
+	self.previous_position = self.position
 	
 	if Input.is_action_pressed("move_brake"):
 		if velocity.x > 100:

@@ -41,6 +41,7 @@ custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 visible_characters = 0
 percent_visible = 0.0
+text = "a"
 __meta__ = {
 "_edit_use_anchors_": false
 }

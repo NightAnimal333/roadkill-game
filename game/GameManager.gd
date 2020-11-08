@@ -13,22 +13,17 @@ enum States {
 var game_state = States.MainMenu
 var current_level
 var menu
-var dialog
 var savegame = null
 var player
-
 
 onready var game_music_player = $GameMusicPlayer
 onready var splat_sound_player = $SplatSoundPlayer
 onready var crash_sound_player = $CrashSoundPlayer
+onready var victory_sound_player = $VictorySoundPlayer
 
 
 func _ready():
 	state_machine(States.MainMenu)
-	
-
-func _process(delta):
-	dialogue_state()
 
 func state_machine(state):
 	game_state = state
@@ -41,14 +36,9 @@ func state_machine(state):
 		States.InitialiseLevel:
 			current_level = load("res://Road.tscn").instance()
 			self.add_child(current_level)
-			dialog = load("res://Dialogue.tscn").instance()
-			self.add_child(dialog)
 			game_state = States.RoadLevel
 			current_level.connect("level_over", self, "restart_level")
-
-func dialogue_state():
-	if current_level != null:
-		dialog.reading_sentence(4)
+			game_music_player.play()
 
 func start_game():
 	menu.queue_free()
@@ -57,19 +47,25 @@ func start_game():
 func end_game():
 	get_tree().quit()
 
-func restart_level(cause):
+func restart_level(cause, distance):
 	print(cause)
 	match cause:
 		"roadkill_killed":
 			splat_sound_player.play()
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
 		"bypasser_crashed":
 			crash_sound_player.play()
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
 		"tree_hit":
 			crash_sound_player.play()
-			
-	game_music_player.seek(6.0)
-	dialog.queue_free()
-	state_machine(States.InitialiseLevel)
+			game_music_player.seek(6.0)
+			state_machine(States.InitialiseLevel)
+		"victory_distance":
+			game_music_player.stop()
+			victory_sound_player.play()
+			state_machine(States.MainMenu)
 
 func _on_GameMusicPlayer_finished():
 	game_music_player.play()
