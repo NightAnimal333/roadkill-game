@@ -12,7 +12,9 @@ Artūrs Umbraško
 Kacper Lewandowski
 
 # Usage
-Just run the binary from game/bin
+Just run the binary from game/bin if you are on Windows 64-bit.
+
+If you are on Linux, we didn't compile a binary. But you can easily run the project in Godot Engine itself by opening project.godot.
 
 # License
 IDK, don't steal it
