@@ -16,3 +16,9 @@ Just run the binary from game/bin
 
 # License
 IDK, don't steal it
+
+# How to play
+"W" and "S" to steer the car.
+
+# Game 
+In this game you will be driving a car until you reach your destination. Be careful though as on your way there will be many animals and other cars. As a pacifist, you really don't want to kill anybody. Driving into a car or into animal will cause the game to restart. So be sure not to drive over the animals!... or cars. 
